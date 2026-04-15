@@ -24,7 +24,7 @@ def login():
             session['user'] = u
             return redirect('/')
         else:
-            return "Invalid login"
+            return render_template('invalid.html')
 
     return render_template('login.html')
 
@@ -40,7 +40,7 @@ def change_password():
         new_pass = request.form['new_password']
         users[session['user']]['password'] = new_pass
         print("⚠️ Password changed (CSRF possible)")
-        return "Password changed!"
+        return render_template('success.html')
     return redirect('/login')
 
 @app.route('/logout')
